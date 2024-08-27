@@ -12,7 +12,6 @@ public class LimitOrder extends LimitOrderAgent {
         this.executionClient = ec;
     }
 
-    @Override
     public void addOrder(boolean buyFlag, String productId, BigDecimal price, int limit) throws ExecutionClient.ExecutionException {
         if(buyFlag && price.compareTo(BigDecimal.valueOf(limit)) <  0) {
             this.executionClient.buy(productId,price.multiply(BigDecimal.valueOf(1000)).setScale(0, RoundingMode.HALF_UP).intValue());
